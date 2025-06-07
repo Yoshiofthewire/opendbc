@@ -3,12 +3,11 @@
 #include "opendbc/safety/safety_declarations.h"
 
 // All common address checks except SCM_BUTTONS which isn't on one Nidec safety configuration
-#define HONDA_COMMON_NO_SCM_FEEDBACK_RX_CHECKS(pt_bus)                                                         \
-  {.msg = {{0x1A6, (pt_bus), 8, .max_counter = 3U, .frequency = 25U},                  /* SCM_BUTTONS */       \
-           {0x296, (pt_bus), 4, .max_counter = 3U, .frequency = 25U}, { 0 }}},                                 \
-  {.msg = {{0x158, (pt_bus), 8, .max_counter = 3U, .frequency = 100U}, { 0 }, { 0 }}},  /* ENGINE_DATA */      \
-           {0x309, (pt_bus), 8, .max_counter = 3U, .frequency = 10U}, { 0 },            /* CAR_SPEED */        \
-  {.msg = {{0x17C, (pt_bus), 8, .max_counter = 3U, .frequency = 100U}, { 0 }, { 0 }}},  /* POWERTRAIN_DATA */  \
+#define HONDA_COMMON_NO_SCM_FEEDBACK_RX_CHECKS(pt_bus)                                                                                      \
+  {.msg = {{0x1A6, (pt_bus), 8, .max_counter = 3U, .ignore_quality_flag = true, .frequency = 25U},                  /* SCM_BUTTONS */       \
+           {0x296, (pt_bus), 4, .max_counter = 3U, .ignore_quality_flag = true, .frequency = 25U}, { 0 }}},                                 \
+  {.msg = {{0x158, (pt_bus), 8, .max_counter = 3U, .ignore_quality_flag = true, .frequency = 100U}, { 0 }, { 0 }}},  /* ENGINE_DATA */      \
+  {.msg = {{0x17C, (pt_bus), 8, .max_counter = 3U, .ignore_quality_flag = true, .frequency = 100U}, { 0 }, { 0 }}},  /* POWERTRAIN_DATA */  \
 
 #define HONDA_COMMON_RX_CHECKS(pt_bus)                                                                                                  \
   HONDA_COMMON_NO_SCM_FEEDBACK_RX_CHECKS(pt_bus)                                                                                        \
